@@ -1,0 +1,48 @@
+openapi: 3.0.3
+info:
+  description: Documentation for motorway API
+  version: 1.0.0
+  title: MOTORWAY API
+
+paths:
+  /vehicle/{id}:
+    get:
+      tags:
+        - Schemas
+      summary: Get vehicle informations based on timestamp
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+            example: "1"
+          required: true
+          description: id of the vehicle
+        - name: timestamp
+          in: query
+          schema:
+            type: string
+            format: date
+            example: "2022-09-12 19:03:54+02:00"
+          required: true
+          description: timestamp
+      responses:
+        200:
+          description: Successful response, returns vehicle informations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Vehicle"
+components:
+  schemas:
+    Vehicle:
+      type: object
+      properties:
+        id:
+          type: number
+        make:
+          type: string
+        model:
+          type: string
+        state:
+          type: string
